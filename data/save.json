@@ -1,8 +1,9 @@
 {
     "score": 0,
-    "level": 2,
-    "click_value": 2,
-    "upgrade_cost": 20,
+    "clicker_level": 1,
+    "passive_clicker_level": 0,
+    "click_value": 1,
+    "upgrade_cost": 10,
     "passive_upgrade_cost": 20,
     "passive_income": 0,
     "timer_speed": 1000,

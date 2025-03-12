@@ -19,15 +19,10 @@ class GameWindow(QMainWindow):
         self.counter.setParent(self)
         self.counter.move(20, -150)
         
-        # Clicker Level counter
-        self.level_counter = LevelCounter(data['clicker_level'])
+        # Level counter
+        self.level_counter = LevelCounter(data['clicker_level'], data['passive_clicker_level'])
         self.level_counter.setParent(self)
         self.level_counter.move(400, -140)
-        
-        # Passive Clicker Level counter
-        self.passive_level_counter = LevelCounter(data['passive_clicker_level'])
-        self.level_counter.setParent(self)
-        self.level_counter.move(400, -130)
         
         # Click Button
         self.click_value = data['click_value']
@@ -37,7 +32,7 @@ class GameWindow(QMainWindow):
         )
         self.click_button.setParent(self)
 
-        # Upgrade Button
+        # Upgrade Click Button
         self.upgrade_cost = data['upgrade_cost']
         self.upgrade_button = GameButton(
             text=f"Upgrade (+1 click) - Cost: {self.upgrade_cost}",
@@ -46,7 +41,7 @@ class GameWindow(QMainWindow):
         )
         self.upgrade_button.setParent(self)
         
-        # Passive Clicker Button
+        # Upgrade Passive Clicker Button
         self.passive_upgrade_cost = data['passive_upgrade_cost']
         self.passive_income = data['passive_income']
         self.passive_upgrade_button = GameButton(
@@ -62,7 +57,7 @@ class GameWindow(QMainWindow):
         self.timer.timeout.connect(self.passive_gain)
         self.timer.start(self.timer_speed)  # Trigger every second
         
-        # Timer speed upgrade button
+        # Upgrade Timer speed Button
         self.timer_upgrade_cost = data['timer_upgrade_cost']
         self.timer_upgrade_button = GameButton(
             text=f"Upgrade (passive clicker speed) - Cost: {self.timer_upgrade_cost}",
@@ -89,7 +84,7 @@ class GameWindow(QMainWindow):
             self.upgrade_cost *= 2
             self.upgrade_button.setText(f"Upgrade (+1 click) - Cost: {self.upgrade_cost}")
             self.level_counter.clicker_level += 1
-            self.level_counter.setText(f"Clicker Level: {self.level_counter.clicker_level}")
+            self.level_counter.update_text()
     
     # Passive click upgrade
     def buy_passive_clicker(self):
@@ -99,7 +94,9 @@ class GameWindow(QMainWindow):
             self.passive_upgrade_cost *= 2
             self.passive_upgrade_button.setText(f"Upgrade (+1 passive clicker) - Cost: {self.passive_upgrade_cost}")
             self.level_counter.passive_clicker_level += 1
-
+            self.level_counter.update_text()
+    
+    # Add passive click to score
     def passive_gain(self):
         self.counter.increment(self.passive_income)
     
@@ -116,6 +113,7 @@ class GameWindow(QMainWindow):
     # Reset game        
     def reset(self):
         self.counter.score = 0
+        self.counter.setText(f"Score: {self.counter.score}")
         self.level_counter.clicker_level = 1
         self.level_counter.passive_clicker_level = 0
         self.click_value = 1
@@ -125,7 +123,7 @@ class GameWindow(QMainWindow):
         self.timer_speed = 1000
         self.timer.start(self.timer_speed)
         self.timer_upgrade_cost = 100
-        self.level_counter.setText(f"Clicker Level: {self.level_counter.clicker_level}")
+        self.level_counter.update_text()
         self.upgrade_button.setText(f"Upgrade (+1 click) - Cost: {self.upgrade_cost}")
         self.passive_upgrade_button.setText(f"Upgrade (+1 passive clicker) - Cost: {self.passive_upgrade_cost}")
         self.timer_upgrade_button.setText(f"Upgrade (passive clicker speed) - Cost: {self.timer_upgrade_cost}")
