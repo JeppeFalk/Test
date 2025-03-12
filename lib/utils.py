@@ -13,7 +13,14 @@ def format_number(n):
 #Save and load Game Data
 SAVE_FILE = os.path.join(os.path.dirname(__file__), '..', 'data', 'save.json')
 
-def save_game(score, clicker_level, passive_clicker_level, click_value, upgrade_cost, passive_upgrade_cost, passive_income, timer_speed, timer_upgrade_cost):
+def save_game(score,
+              clicker_level, 
+              passive_clicker_level, 
+              click_value, upgrade_cost, 
+              passive_upgrade_cost, 
+              passive_income, timer_speed, 
+              timer_upgrade_cost
+              ):
 
     # Make sure the data folder exists
     os.makedirs(os.path.dirname(SAVE_FILE), exist_ok=True)

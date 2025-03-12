@@ -1,11 +1,11 @@
 {
-    "score": 0,
-    "clicker_level": 1,
-    "passive_clicker_level": 0,
-    "click_value": 1,
-    "upgrade_cost": 10,
-    "passive_upgrade_cost": 20,
-    "passive_income": 0,
-    "timer_speed": 1000,
-    "timer_upgrade_cost": 100
+    "score": 91,
+    "clicker_level": 2,
+    "passive_clicker_level": 2,
+    "click_value": 2,
+    "upgrade_cost": 20,
+    "passive_upgrade_cost": 80,
+    "passive_income": 2,
+    "timer_speed": 500,
+    "timer_upgrade_cost": 200
 }
